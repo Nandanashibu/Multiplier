@@ -28,7 +28,7 @@ module tb ();
 `endif
 
   // Replace tt_um_example with your module name:
-  tt_um_Multiplier user_project (
+  tt_um_Multiplier (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
@@ -45,5 +45,31 @@ module tb ();
       .clk    (clk),      // clock
       .rst_n  (rst_n)     // not reset
   );
+   // Clock generation (100MHz)
+  initial begin
+    clk = 0;
+    forever #5 clk = ~clk;
+  end
+
+  // Test stimulus
+  initial begin
+    // Initialize
+    rst_n = 0;
+    ena = 1;
+    ui_in = 0;
+    uio_in = 0;
+    #100;
+    rst_n = 1;
+
+    // Test case 1: 3 × 4 = 12
+    ui_in = 8'h43;  // B=4 (0x4), A=3 (0x3)
+    #100;
+    
+    // Test case 2: 15 × 15 = 225
+    ui_in = 8'hFF;  // B=15 (0xF), A=15 (0xF)
+    #100;
+    
+    $finish;
+  end
 
 endmodule

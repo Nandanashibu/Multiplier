@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-njskjnidsjnjadnojna omdon
+The Verilog code takes two 4-bit inputs, multiplies them, and outputs an 8-bit product. 
 
 ## How to test
 
-ibshevwbhiqpy
+Write a Verilog testbench to apply input values, simulate using Icarus Verilog (iverilog) or ModelSim, and verify the output matches expected multiplication results. 
 
 ## External hardware
 

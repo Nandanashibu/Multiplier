@@ -23,8 +23,8 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
-  // Instantiate the module (corrected name to match your design)
-  tt_um_Nandanashibu_multiplier-project (
+  // Instantiate the module - CRITICAL FIX: Module name must match exactly
+  tt_um_nandanas_multiplier user_project (  // Changed to match your info.yaml
 `ifdef GL_TEST
       .VPWR(VPWR),
       .VGND(VGND),
@@ -39,13 +39,13 @@ module tb ();
       .rst_n  (rst_n)
   );
 
-  // Clock generation (100MHz)
+  // Clock generation (100MHz) - unchanged
   initial begin
     clk = 0;
     forever #5 clk = ~clk;
   end
 
-  // Reset sequence
+  // Reset sequence - unchanged
   initial begin
     rst_n = 0;
     ena = 1;
@@ -55,21 +55,21 @@ module tb ();
     rst_n = 1;
   end
 
-  // Test stimulus (corrected inputs)
+  // Test stimulus - corrected display formatting
   initial begin
     #40;
-    // Test case 1: 3 * 4 = 12 (A in lower bits, B in upper bits)
-    ui_in = 8'h43;  // B=4 (0x4), A=3 (0x3)
-    uio_in = 0;     // Must be 0 (unused)
+    // Test case 1: 3 * 4 = 12
+    ui_in = 8'h43;  // B=4, A=3
+    uio_in = 0;
     #10;
-    $display("Test 1: %d * %d = %d", ui_in[3:0], ui_in[7:4], uo_out);
+    $display("Test 1: %0d * %0d = %0d", ui_in[3:0], ui_in[7:4], uo_out);
     
     // Test case 2: 15 * 15 = 225
     #20;
-    ui_in = 8'hFF;  // B=15 (0xF), A=15 (0xF)
+    ui_in = 8'hFF;  // B=15, A=15
     uio_in = 0;
     #10;
-    $display("Test 2: %d * %d = %d", ui_in[3:0], ui_in[7:4], uo_out);
+    $display("Test 2: %0d * %0d = %0d", ui_in[3:0], ui_in[7:4], uo_out);
     
     #20;
     $finish;

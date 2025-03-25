@@ -13,7 +13,7 @@ The Verilog code takes two 4-bit inputs, multiplies them, and outputs an 8-bit p
 
 ## How to test
 
-Write a Verilog testbench to apply input values, simulate using Icarus Verilog (iverilog) or ModelSim, and verify the output matches expected multiplication results. 
+Write a Verilog testbench to apply input values, simulate  and verify the output matches expected multiplication results. 
 
 ## External hardware
 
